@@ -1,3 +1,4 @@
+# search this for everything and add comments
 FROM golang:latest
 
 #creating the build directory

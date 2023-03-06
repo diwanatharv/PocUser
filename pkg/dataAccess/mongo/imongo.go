@@ -7,6 +7,7 @@ import (
 	"npm/pkg/models"
 )
 
+// functions in mongofetch
 type DbMethods interface {
 	FindOne(interface{}) *mongo.SingleResult
 	FindAll(interface{}, *options.FindOptions) (*mongo.Cursor, error)

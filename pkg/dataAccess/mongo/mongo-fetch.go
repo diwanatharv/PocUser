@@ -14,10 +14,6 @@ type Collection struct {
 	Users *mongo.Collection
 }
 
-//func (db *Collection) CreateMongoCollection(nameOfCollection string) {
-//	db.LeadCollection = config.Db.Collection(nameOfCollection) //creating the collection
-//}
-
 func (db *Collection) FindOne(filter interface{}) *mongo.SingleResult {
 	return db.Users.FindOne(context.Background(), filter)
 }
@@ -36,7 +32,7 @@ func (db *Collection) UpdateOne(filter interface{}, update interface{}) (*mongo.
 
 func (db *Collection) TotalDocument() (int, error) {
 	if db.Users == nil {
-		fmt.Println("the collection is not initialise")
+		fmt.Println("there is no document here")
 	}
 	len, err := db.Users.EstimatedDocumentCount(context.Background())
 	ans := (int)(len)

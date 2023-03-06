@@ -7,11 +7,11 @@ import (
 	mongodb "npm/pkg/dataAccess/mongo"
 )
 
-// collection can be differeent that 's why using this function to create the collection
+// we can insert different user in  the collection
 var Collection mongodb.Collection
 
-func CreateUserCollection() {
-	Collection.Users = config.Db.Collection("Usercool")
+func CreateUserCollection(dbName string) {
+	Collection.Users = config.Db.Collection(dbName) // making a collection in mongodb
 	if Collection.Users == nil {
 		fmt.Println("not initialised in the user ")
 	}

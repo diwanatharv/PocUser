@@ -12,21 +12,22 @@ import (
 
 func UpdateUser(c echo.Context) error {
 
-	//service layer call
+	// paramter passed by the user with termed id
 	key := c.QueryParam("id")
 
 	var reqBody models.User
-	err := c.Bind(&reqBody) //binding the data(sent by user) with reqBody
+	err := c.Bind(&reqBody) // binding the data(sent by user) with reqBody
 	if err != nil {
 		return err
 	}
 
 	var v = validator.New()
-	err2 := v.Struct(reqBody) //checking validation
+	err2 := v.Struct(&reqBody) // checking validation
 	if err2 != nil {
 		return err2
 	}
 
+	// updating the user  instance provided
 	_, err3 := service.UpdateOne(reqBody, key)
 	if err3 != nil {
 		return err3

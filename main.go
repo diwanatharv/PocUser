@@ -7,8 +7,9 @@ import (
 )
 
 func main() {
+	// intializes reddis database
 	config.CreateRedisDatabase()
-	config.CreateDatabase("UserDb")
-	dataAccess.CreateUserCollection()
+	config.CreateMongoDatabase("UserDb")
+	dataAccess.CreateUserCollection("Usercool")
 	routes.CreateRoutesAndServer()
 }

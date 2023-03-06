@@ -12,7 +12,7 @@ import (
 
 var Db *mongo.Database
 
-func CreateDatabase(dbName string) {
+func CreateMongoDatabase(dbName string) {
 	//connecting with mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
@@ -25,7 +25,6 @@ func CreateDatabase(dbName string) {
 		fmt.Println("error in line 25", err)
 	}
 	Db = client.Database(dbName) //creating the db
-	fmt.Println("database created")
 
 }
 
