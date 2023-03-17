@@ -12,7 +12,7 @@ import (
 
 var Db *mongo.Database
 
-func CreateDatabase(dbName string) {
+func CreateMongoDatabase(dbName string) {
 	//connecting with mongodb
 	client, err := mongo.NewClient(options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
@@ -22,16 +22,16 @@ func CreateDatabase(dbName string) {
 	defer cancel()
 	err = client.Connect(ctx)
 	if err != nil {
-		fmt.Println("error in line 25", err)
+		fmt.Println("error in connecting", err)
 	}
 	Db = client.Database(dbName) //creating the db
-	fmt.Println("database created")
 
 }
 
 var RedisDatabase *redis.Client
 
 func CreateRedisDatabase() {
+
 	RedisDatabase = redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set

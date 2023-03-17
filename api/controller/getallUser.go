@@ -11,16 +11,15 @@ import (
 )
 
 func GetAllUser(c echo.Context) error {
+	// this is the  empty slice
+	var allUser []models.User
 
-	var allLeads []models.User
-	// this will store all the information related to lead
-
+	// this will find all those whose id is true which mean it exists
 	elementFilter := bson.M{
 		"id": bson.M{"$exists": true},
 	}
-	//findElementRes, err := Col_of_Leads.Find(context.Background(), elementFilter) //this will return cursor to the first element and will loop it and store it in slice of lead and will display
-	//findElementRes, err := collection.FindAll(elementFilter)
-	allLeads = service.FindAll(elementFilter)
+	//function for finding all the user
+	allUser = service.FindAll(elementFilter)
 
-	return c.JSON(http.StatusOK, allLeads)
+	return c.JSON(http.StatusOK, allUser)
 }
