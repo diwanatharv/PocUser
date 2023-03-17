@@ -12,6 +12,7 @@ import (
 
 func CreateUser(c echo.Context) error {
 	// creating an instance of the user struct
+	//echo.New().Logger.SetLevel(log.DEBUG)
 	var reqBody models.User
 
 	err := c.Bind(&reqBody) // whatever the data is coming we will bind it with the reqbody
@@ -19,15 +20,15 @@ func CreateUser(c echo.Context) error {
 		return err
 	}
 	var v = validator.New()
-	err2 := v.Struct(&reqBody) // checking validation added in the model of the structure of the user
-	if err2 != nil {
+	err1 := v.Struct(&reqBody) // checking validation added in the model of the structure of the user
+	if err1 != nil {
 		return c.JSON(http.StatusNotFound, "validation failed")
 	}
 	// this will insert in the mongodb
-	res, err4 := service.Create(reqBody)
+	res, err2 := service.Create(reqBody)
 
-	if err4 != nil {
-		return err4
+	if err2 != nil {
+		return err2
 	}
 	// return res if no error
 	return c.JSON(http.StatusOK, res)

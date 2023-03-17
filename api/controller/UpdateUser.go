@@ -16,9 +16,9 @@ func UpdateUser(c echo.Context) error {
 	key := c.QueryParam("id")
 
 	var reqBody models.User
-	err := c.Bind(&reqBody) // binding the data(sent by user) with reqBody
-	if err != nil {
-		return err
+	err1 := c.Bind(&reqBody) // binding the data(sent by user) with reqBody
+	if err1 != nil {
+		return err1
 	}
 
 	var v = validator.New()
@@ -28,9 +28,9 @@ func UpdateUser(c echo.Context) error {
 	}
 
 	// updating the user  instance provided
-	_, err3 := service.UpdateOne(reqBody, key)
+	ans, err3 := service.UpdateOne(reqBody, key)
 	if err3 != nil {
 		return err3
 	}
-	return c.JSON(http.StatusOK, reqBody)
+	return c.JSON(http.StatusOK, ans)
 }

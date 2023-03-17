@@ -22,7 +22,7 @@ func CreateMongoDatabase(dbName string) {
 	defer cancel()
 	err = client.Connect(ctx)
 	if err != nil {
-		fmt.Println("error in line 25", err)
+		fmt.Println("error in connecting", err)
 	}
 	Db = client.Database(dbName) //creating the db
 
@@ -31,6 +31,7 @@ func CreateMongoDatabase(dbName string) {
 var RedisDatabase *redis.Client
 
 func CreateRedisDatabase() {
+
 	RedisDatabase = redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "", // no password set
